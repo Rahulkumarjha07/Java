@@ -1,33 +1,32 @@
-package sorting;
+public class insertionsort{
 
-public class insertionsort {
-
-    public static void swap(int arr[], int i, int j) {
-        int temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-    }
-
-    public static void sort(int arr[]) {
+    public static void InsertionSort(int[] arr) {
         int n = arr.length;
 
+        
         for (int i = 1; i < n; i++) {
-            int j = i;   
 
-            while (j > 0 && arr[j - 1] > arr[j]) { 
-                swap(arr, j, j - 1);
+            int key = arr[i];      // element to be placed
+            int j = i - 1;
+
+            // shift elements greater than key
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
                 j--;
             }
+
+            // insert key at correct position
+            arr[j + 1] = key;
         }
     }
 
-    public static void main(String args[]) {
-        int arr[] = {10, 6, 90, 7, 100, 98, 88};
+    public static void main(String[] args) {
+        int[] arr = {10, 6, 90, 7, 100, 98, 88};
 
-        sort(arr);
+        InsertionSort(arr);
 
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
+        for (int num : arr) {
+            System.out.print(num + " ");
         }
     }
 }
