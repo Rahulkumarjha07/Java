@@ -1,6 +1,6 @@
 package binarysearchtree;
 
-public class bst{
+public class search{
        static class Node{
         int data;
         Node right;
@@ -26,13 +26,19 @@ public class bst{
        return root;
        }
 
-       public static void inorder(Node root){
+       public static boolean searchfunction(Node root, int key){
         if(root == null){
-            return;
+            return false;
         }
-        inorder(root.left);
-        System.out.print(root.data+" ");
-        inorder(root.right);
+       if(root.data == key){
+        return true;
+       }
+       else if(root.data > key){
+        return searchfunction(root.left,key);
+       }
+       else{
+        return searchfunction(root.right,key);
+       }
        }
     public static void main(String args[]){
     int val[] = {5,1,3,4,2,7};
@@ -41,6 +47,11 @@ public class bst{
       for(int i=0;i<n;i++){
         root = insert(root,val[i]);
       }
-      inorder(root);
+      if(searchfunction(root,6)){
+        System.out.println("found");
+      }
+      else{
+         System.out.println("not found");
+      }
     }
 }
